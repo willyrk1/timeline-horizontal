@@ -1,0 +1,13 @@
+.canvas-container {
+  position: relative;
+}
+
+.canvas-container canvas, .canvas-container div {
+  position: absolute;
+}
+
+.canvas-container div {
+  background-color: white;
+  border: solid 1px black;
+  padding: 4px 10px;
+}
