@@ -1,13 +1,14 @@
-.canvas-container {
+.container {
   position: relative;
 }
 
-.canvas-container canvas, .canvas-container div {
+.container svg, .container div {
   position: absolute;
 }
 
-.canvas-container div {
+.container div {
   background-color: white;
   border: solid 1px black;
   padding: 4px 10px;
+  pointer-events: none;
 }
