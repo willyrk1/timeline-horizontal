@@ -11,12 +11,14 @@ interface HorizontalTimelineProps {
   events: Event[]
   startYear: number
   endYear: number
-  onForwardButton?: () => void
-  onBackButton?: () => void
+  centerYear: number
+  pixelsPerYear: number
 }
 
 export default function HorizontalTimeline(props: HorizontalTimelineProps) {
-  const { events, startYear, endYear, onForwardButton = () => {}, onBackButton = () => {} } = props
+  const { events, startYear, endYear, centerYear, pixelsPerYear } = props
+
+  const totalWidth = (endYear - startYear) * pixelsPerYear;
 
   interface HoverState {
     x: number
@@ -34,27 +36,35 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
     yearLines.push(year);
   }
 
-  const backForwardProps = {
-    cy: window.innerHeight / 2,
-    r: 10,
-    fillOpacity: 0,
-    stroke: 'black',
-  }
 
   let yIndex = 0;
 
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const containerHeight = containerRef?.current?.clientHeight || window.innerHeight;
+
+  const [, setForceRefresh] = React.useState<boolean>()
+  const handleWindowResize = () => {
+    setForceRefresh(x => !x);
+  }
+  React.useEffect(() => {
+    handleWindowResize();
+    window.addEventListener("resize", handleWindowResize)
+    return () => window.removeEventListener("resize", handleWindowResize)
+  }, [])
+
   return (
-    <div className='container'>
+    <div className='container' ref={containerRef}
+     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height={window.innerHeight}
-        width={window.innerWidth}
+        height={1000}
+        width={totalWidth}
         onMouseMove={() => {
           setHoverState(undefined);
         }}
       >
         {yearLines.map(year => {
-          const x = window.innerWidth * (year - startYear) / (endYear - startYear);
+          const x = totalWidth * (year - startYear) / (endYear - startYear);
           const yearLineProps = {
             x,
             textAnchor: 'middle',
@@ -67,19 +77,17 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
                 x1={x}
                 y1='24'
                 x2={x}
-                y2={window.innerHeight - 22}
+                y2={containerHeight - 22}
                 stroke='black'
                 strokeOpacity='0.3'
                 strokeWidth='1'
               />
               <text {...yearLineProps} y='20'>{year}</text>
-              <text {...yearLineProps} y={window.innerHeight - 5}>{year}</text>
+              <text {...yearLineProps} y={containerHeight - 5}>{year}</text>
             </React.Fragment>
           );
         })}
 
-        <circle {...backForwardProps} onClick={onBackButton} cx='20' />
-        <circle {...backForwardProps} onClick={onForwardButton} cx={window.innerWidth - 20} />
 
         {events.map(event => {
           yIndex++;
@@ -101,8 +109,8 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
           switch (event.eventType) {
             case 'range': {
               const { title, startDate, endDate, detail } = event;
-              const boxLeft = window.innerWidth * (getDateNumber(startDate) - startYear) / (endYear - startYear);
-              const right = window.innerWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
+              const boxLeft = totalWidth * (getDateNumber(startDate) - startYear) / (endYear - startYear);
+              const right = totalWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
               const y = topMargin + yIndex * boxHeight + 10;
               return (
                 <g {...hoverProps(detail)} key={title}>
@@ -129,7 +137,7 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
             case 'point': {
               const { date, title, detail } = event;
               const top = topMargin + yIndex * boxHeight
-              const x = window.innerWidth * (getDateNumber(date) - startYear) / (endYear - startYear);
+              const x = totalWidth * (getDateNumber(date) - startYear) / (endYear - startYear);
               const y = top + boxHeight / 2 - 2.5;
               return (
                 <g {...hoverProps(detail)} key={title}>

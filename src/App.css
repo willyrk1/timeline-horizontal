@@ -1,5 +1,7 @@
 .container {
   position: relative;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .container svg, .container div {

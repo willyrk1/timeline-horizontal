@@ -1,21 +1,13 @@
-import * as React from "react";
 import "./App.css";
 import HorizontalTimeline, { pointEvent, rangeEvent, spacer, top } from "./HorizontalTimeline";
 
 export default function App() {
-  const [startYear, setStartYear] = React.useState(1937)
-  const [endYear, setEndYear] = React.useState(1948)
   return (
     <HorizontalTimeline
-      {...{ startYear, endYear }}
-      onBackButton={() => {
-        setStartYear(y => y - 10);
-        setEndYear(y => y - 10);
-      }}
-      onForwardButton={() => {
-        setStartYear(y => y + 10);
-        setEndYear(y => y + 10);
-      }}
+      startYear={1930}
+      endYear={1950}
+      centerYear={1942.5}
+      pixelsPerYear={175}
       events={[
         spacer(),
         spacer(),
