@@ -16,7 +16,7 @@ interface HorizontalTimelineProps {
 }
 
 export default function HorizontalTimeline(props: HorizontalTimelineProps) {
-  const { events, startYear, endYear, centerYear, pixelsPerYear } = props
+  const { events, startYear, endYear, pixelsPerYear } = props
 
   const totalWidth = (endYear - startYear) * pixelsPerYear;
 
@@ -36,28 +36,23 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
     yearLines.push(year);
   }
 
+  let svgHeight = 0;
+  let currentY = 65;
+  events.forEach(event => {
+    currentY = event.eventType === 'top' ? 65 : currentY + 25
+    if (currentY > svgHeight) {
+      svgHeight = currentY;
+    }
+  })
+  svgHeight += 30;
 
   let yIndex = 0;
 
-  const containerRef = React.useRef<HTMLDivElement | null>(null);
-  const containerHeight = containerRef?.current?.clientHeight || window.innerHeight;
-
-  const [, setForceRefresh] = React.useState<boolean>()
-  const handleWindowResize = () => {
-    setForceRefresh(x => !x);
-  }
-  React.useEffect(() => {
-    handleWindowResize();
-    window.addEventListener("resize", handleWindowResize)
-    return () => window.removeEventListener("resize", handleWindowResize)
-  }, [])
-
   return (
-    <div className='container' ref={containerRef}>
+    <div className='container'>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        viewBox='0 0 3500 870'
-        width={totalWidth}
+        viewBox={`0 0 ${totalWidth} ${svgHeight}`}
         onMouseMove={() => {
           setHoverState(undefined);
         }}
@@ -76,13 +71,13 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
                 x1={x}
                 y1='24'
                 x2={x}
-                y2={containerHeight - 22}
+                y2={svgHeight - 22}
                 stroke='black'
                 strokeOpacity='0.3'
                 strokeWidth='1'
               />
               <text {...yearLineProps} y='20'>{year}</text>
-              <text {...yearLineProps} y={containerHeight - 5}>{year}</text>
+              <text {...yearLineProps} y={svgHeight - 5}>{year}</text>
             </React.Fragment>
           );
         })}
