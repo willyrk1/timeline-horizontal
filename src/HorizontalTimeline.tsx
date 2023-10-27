@@ -53,11 +53,10 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
   }, [])
 
   return (
-    <div className='container' ref={containerRef}
-     >
+    <div className='container' ref={containerRef}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        height={1000}
+        viewBox='0 0 3500 870'
         width={totalWidth}
         onMouseMove={() => {
           setHoverState(undefined);
@@ -87,7 +86,6 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
             </React.Fragment>
           );
         })}
-
 
         {events.map(event => {
           yIndex++;
@@ -163,7 +161,7 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
         })}
       </svg>
       {hoverState && (
-        <div style={{ left: hoverState.x + 20, top: hoverState.y + 20 }}>
+        <div style={{ left: hoverState.x + 20, top: hoverState.y + 20 }} className='detail'>
           {hoverState.detail}
         </div>
       )}

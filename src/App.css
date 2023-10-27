@@ -8,7 +8,11 @@
   position: absolute;
 }
 
-.container div {
+.container svg {
+  height: 100%;
+}
+
+.detail {
   background-color: white;
   border: solid 1px black;
   padding: 4px 10px;
