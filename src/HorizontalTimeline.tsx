@@ -20,13 +20,13 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
 
   const totalWidth = (endYear - startYear) * pixelsPerYear;
 
-  interface HoverState {
+  interface DetailState {
     x: number
     y: number
     detail: string
   }
   
-  const [hoverState, setHoverState] = React.useState<HoverState>()
+  const [detailState, setDetailState] = React.useState<DetailState>()
 
   const yearLines: Array<number> = []
   const interval = endYear - startYear < 30 ? 1 : 10;
@@ -53,8 +53,8 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${totalWidth} ${svgHeight}`}
-        onMouseMove={() => {
-          setHoverState(undefined);
+        onClick={() => {
+          setDetailState(undefined);
         }}
       >
         {yearLines.map(year => {
@@ -85,18 +85,16 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
         {events.map(event => {
           yIndex++;
           const boxHeight = 25;
-          function hoverProps(detail?: string) {
+          function detailProps(detail?: string) {
             return {
-              onMouseMove: (e: React.MouseEvent) => {
-                setHoverState(undefined);
+              className: detail ? 'detail-link' : undefined,
+              onClick: (e: React.MouseEvent) => {
+                setDetailState(undefined);
                 if (detail) {
-                  setHoverState({x: e.clientX, y: e.clientY, detail});
+                  setDetailState({x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY, detail});
                 }
                 e.stopPropagation();
               },
-              onMouseLeave: () => {
-                setHoverState(undefined);
-              }
             }
           }
           switch (event.eventType) {
@@ -106,7 +104,7 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
               const right = totalWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
               const y = topMargin + yIndex * boxHeight + 10;
               return (
-                <g {...hoverProps(detail)} key={title}>
+                <g {...detailProps(detail)} key={title}>
                   <line
                     x1={boxLeft}
                     x2={right}
@@ -133,7 +131,7 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
               const x = totalWidth * (getDateNumber(date) - startYear) / (endYear - startYear);
               const y = top + boxHeight / 2 - 2.5;
               return (
-                <g {...hoverProps(detail)} key={title}>
+                <g {...detailProps(detail)} key={title}>
                   <polygon
                     points={`${x - 5},${y} ${x},${y + 5} ${x + 5},${y} ${x},${y - 5}`}
                   />
@@ -155,9 +153,9 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
           }
         })}
       </svg>
-      {hoverState && (
-        <div style={{ left: hoverState.x + 20, top: hoverState.y + 20 }} className='detail'>
-          {hoverState.detail}
+      {detailState && (
+        <div style={{ left: detailState.x + 20, top: detailState.y + 20 }} className='detail'>
+          {detailState.detail}
         </div>
       )}
     </div>
