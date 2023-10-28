@@ -16,7 +16,7 @@ interface HorizontalTimelineProps {
 }
 
 export default function HorizontalTimeline(props: HorizontalTimelineProps) {
-  const { events, startYear, endYear, pixelsPerYear } = props
+  const { events, startYear, endYear, centerYear, pixelsPerYear } = props
 
   const totalWidth = (endYear - startYear) * pixelsPerYear;
 
@@ -48,14 +48,24 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
 
   let yIndex = 0;
 
+  const containerRef = React.useRef<HTMLDivElement | null>(null);
+  const svgRef = React.useRef<SVGSVGElement | null>(null);
+  React.useEffect(() => {
+    if (containerRef.current && svgRef.current) {
+      const centerX = svgRef.current.clientWidth * (centerYear - startYear) / (endYear - startYear)
+      containerRef.current.scrollLeft = centerX - window.innerWidth / 2;
+    }
+  }, [])
+
   return (
-    <div className='container'>
+    <div className='container' ref={containerRef}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox={`0 0 ${totalWidth} ${svgHeight}`}
         onClick={() => {
           setDetailState(undefined);
         }}
+        ref={svgRef}
       >
         {yearLines.map(year => {
           const x = totalWidth * (year - startYear) / (endYear - startYear);
