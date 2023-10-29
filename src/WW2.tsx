@@ -1,7 +1,7 @@
-import "./App.css";
+import React from "react";
 import HorizontalTimeline, { pointEvent, rangeEvent, spacer, top } from "./HorizontalTimeline";
 
-export default function App() {
+export default function WW2() {
   return (
     <HorizontalTimeline
       startYear={1930}
@@ -32,6 +32,8 @@ export default function App() {
         pointEvent("Hitler speech threatening annihilation of the Jewish race", [1939, 1, 30]),
         pointEvent("Germany invades Czechoslovakia", [1939, 3, 15], "...with little resistance."),
         pointEvent("Italy invades Albania", [1939, 4, 7]),
+        spacer(),
+        rangeEvent("Spanish Civil War", [1936, 7, 17], [1939, 4, 1]),
         top(),
         rangeEvent("WORLD WAR II", [1939, 9, 1], [1945, 9, 2]),
         pointEvent("Molotov-Ribbentrop Pact", [1939, 8, 23], "...between Germany and the Soviet Union."),

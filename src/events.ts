@@ -1,24 +1,29 @@
-interface RangeEvent {
-  eventType: 'range'
+export interface EventBase {
   title: string
+  detail?: string
+  link?: string
+}
+
+interface RangeEvent extends EventBase {
+  eventType: 'range'
   startDate: number[]
   endDate: number[]
-  detail?: string
 }
 
-export function rangeEvent(title: string, startDate: number[], endDate: number[], detail?: string) : RangeEvent {
-  return { eventType: 'range', title, startDate, endDate, detail }
+export function rangeEvent(
+  title: string, startDate: number[], endDate: number[], detail?: string, link?: string
+) : RangeEvent {
+  return { eventType: 'range', title, startDate, endDate, detail, link }
 }
 
-interface PointEvent {
+interface PointEvent extends EventBase {
   eventType: 'point'
-  title: string
   date: number[]
-  detail?: string
 }
 
-export function pointEvent(title: string, date: number[], detail?: string) : PointEvent {
-  return { eventType: 'point', title, date, detail }
+export function pointEvent(
+  title: string, date: number[], detail?: string, link?: string) : PointEvent {
+  return { eventType: 'point', title, date, detail, link }
 }
 
 interface Spacer {

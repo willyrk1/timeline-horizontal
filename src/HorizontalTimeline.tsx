@@ -1,7 +1,8 @@
 import * as React from 'react';
 import './App.css';
-import { Event } from './events';
+import { Event, EventBase } from './events';
 import { getDateNumber } from './utility';
+import { Link } from 'react-router-dom';
 
 export * from './events';
 
@@ -23,7 +24,7 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
   interface DetailState {
     x: number
     y: number
-    detail: string
+    event: EventBase
   }
   
   const [detailState, setDetailState] = React.useState<DetailState>()
@@ -95,13 +96,13 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
         {events.map(event => {
           yIndex++;
           const boxHeight = 25;
-          function detailProps(detail?: string) {
+          function detailProps(event: EventBase) {
             return {
-              className: detail ? 'detail-link' : undefined,
+              className: event.detail ? 'detail-link' : undefined,
               onClick: (e: React.MouseEvent) => {
                 setDetailState(undefined);
-                if (detail) {
-                  setDetailState({x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY, detail});
+                if (event.detail) {
+                  setDetailState({x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY, event});
                 }
                 e.stopPropagation();
               },
@@ -109,12 +110,12 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
           }
           switch (event.eventType) {
             case 'range': {
-              const { title, startDate, endDate, detail } = event;
+              const { title, startDate, endDate } = event;
               const boxLeft = totalWidth * (getDateNumber(startDate) - startYear) / (endYear - startYear);
               const right = totalWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
               const y = topMargin + yIndex * boxHeight + 10;
               return (
-                <g {...detailProps(detail)} key={title}>
+                <g {...detailProps(event)} key={title}>
                   <line
                     x1={boxLeft}
                     x2={right}
@@ -136,12 +137,12 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
               );
             }
             case 'point': {
-              const { date, title, detail } = event;
+              const { date, title } = event;
               const top = topMargin + yIndex * boxHeight
               const x = totalWidth * (getDateNumber(date) - startYear) / (endYear - startYear);
               const y = top + boxHeight / 2 - 2.5;
               return (
-                <g {...detailProps(detail)} key={title}>
+                <g {...detailProps(event)} key={title}>
                   <polygon
                     points={`${x - 5},${y} ${x},${y + 5} ${x + 5},${y} ${x},${y - 5}`}
                   />
@@ -165,7 +166,12 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
       </svg>
       {detailState && (
         <div style={{ left: detailState.x + 20, top: detailState.y + 20 }} className='detail'>
-          {detailState.detail}
+          <h1>{detailState.event.title}</h1>
+          <hr />
+          {detailState.event.detail}
+          {detailState.event.link && (
+            <Link to={detailState.event.link} className='detail-timeline-link'>timeline</Link>
+          )}
         </div>
       )}
     </div>
