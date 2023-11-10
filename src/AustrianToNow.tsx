@@ -1,10 +1,7 @@
-import * as React from 'react';
 import './App.css';
 import HorizontalTimeline, { pointEvent, rangeEvent, spacer, top } from "./HorizontalTimeline";
 
 export default function AustrianToNow() {
-  const startYearState = React.useState(1710)
-  const endYearState = React.useState(2025)
   return (
     <HorizontalTimeline
       startYear={1710}
@@ -12,7 +9,11 @@ export default function AustrianToNow() {
       centerYear={1800}
       pixelsPerYear={6}
       events={[
-        rangeEvent('War of the Austrian Succession', [1740, 2, 16], [1748, 10, 18], 'The end of the main Habsburg male line results in Prussia, France, Spain, Bavaria, Sweden, etc. going to war with Austria, Great Britain, Russia, the Dutch Republic, etc. Fronts are in Germany, Italy and the Netherlands.'),
+        rangeEvent('War of the Austrian Succession', [1740, 12, 16], [1748, 10, 18], `
+          The end of the main Habsburg male line results in Prussia, France, Spain,
+          Bavaria, Sweden, etc. going to war with Austria, Great Britain, Russia, the Dutch
+          Republic, etc. Fronts are in Germany, Italy and the Netherlands.
+          `, "AustrianSuccession"),
         rangeEvent('French and Indian War', [1754, 5, 28], [1763, 2, 10], 'Great Britain (Kings George II, George III) and France (King Louis XV) again go to war in North America, both aided by natives, when colonists from both sides clash over territory. The war is subsumed into the Seven Years\' War.'),
         rangeEvent('Seven Years\' War', [1756, 5, 17], [1763, 2, 15], 'Territorial conflicts and realignment of alliances reignites war in Europe, North America and India between Prussia, Great Britain, Portugal etc. and Austria, France, Spain, Sweden, Russia, etc.'),
         rangeEvent('American Revolutionary War', [1775, 4, 19], [1783, 9, 3], 'British colonists in America revolt against Great Britain for independence. Eventually France, Spain and the Dutch Republic join in attacking Britain around the world.'),
