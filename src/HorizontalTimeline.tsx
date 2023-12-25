@@ -170,7 +170,13 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
           <hr />
           {detailState.event.detail}
           {detailState.event.link && (
-            <Link to={detailState.event.link} className='detail-timeline-link'>timeline</Link>
+            <Link
+              to={detailState.event.link}
+              relative='path'
+              className='detail-timeline-link'
+            >
+              timeline
+            </Link>
           )}
         </div>
       )}

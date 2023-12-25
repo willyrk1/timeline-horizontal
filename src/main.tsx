@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import AustrianToNow from './AustrianToNow.js'
 import App2 from './App2.js'
 import AustrianSuccession from './AustrianSuccession.js'
+import FirstSilesian from './FirstSilesian.js'
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: "/timeline-horizontal/AustrianSuccession",
     element: <AustrianSuccession />,
+  },
+  {
+    path: "/timeline-horizontal/FirstSilesian",
+    element: <FirstSilesian />,
   },
 ])
 
