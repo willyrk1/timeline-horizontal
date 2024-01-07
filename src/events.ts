@@ -34,6 +34,10 @@ export function spacer() : Spacer {
   return { eventType: 'spacer' }
 }
 
+export function spacers(count: number) : Spacer[] {
+  return new Array(count).fill({ eventType: 'spacer' })
+}
+
 interface Top {
   eventType: 'top'
 }
