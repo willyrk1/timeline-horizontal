@@ -54,7 +54,9 @@ export default function AustrianToNow() {
         pointEvent('Cuban Missile Crisis', [1962, 10, 28]),
         rangeEvent('Soviet-Afghan War', [1979, 12, 24], [1989, 2, 15]),
         rangeEvent('Iran-Iraq War', [1980, 9, 22], [1988, 8, 20]),
-        pointEvent('Soviet Union dissolved', [1991, 12, 26]),
+        pointEvent('Soviet Union dissolved', [1991, 12, 26], `
+          Soviet Union dissolved
+        `, "EndUSSR"),
         rangeEvent('Yugoslav Wars', [1991, 3, 31], [2001, 11, 12]),
         rangeEvent('Iraq War', [2003, 3, 20], [2011, 12, 15]),
         rangeEvent('Russo-Ukrainian War', [2014, 2, 20], [2023, 9, 26]),

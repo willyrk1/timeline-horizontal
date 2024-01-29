@@ -1,6 +1,6 @@
 export interface EventBase {
   title: string
-  detail?: string
+  detail?: React.ReactNode
   link?: string
 }
 
@@ -22,7 +22,7 @@ interface PointEvent extends EventBase {
 }
 
 export function pointEvent(
-  title: string, date: number[], detail?: string, link?: string) : PointEvent {
+  title: string, date: number[], detail?: React.ReactNode, link?: string) : PointEvent {
   return { eventType: 'point', title, date, detail, link }
 }
 
