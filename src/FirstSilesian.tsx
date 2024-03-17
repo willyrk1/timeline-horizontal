@@ -1,5 +1,5 @@
 import "./App.css";
-import HorizontalTimeline, { pointEvent, rangeEvent, spacer, top } from "./HorizontalTimeline";
+import HorizontalTimeline, { pointEvent, rangeEvent } from "./HorizontalTimeline";
 
 export default function FirstSilesian() {
   return (

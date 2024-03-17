@@ -1,5 +1,5 @@
 import "./App.css";
-import HorizontalTimeline, { pointEvent, rangeEvent, spacer, spacers, top } from "./HorizontalTimeline";
+import HorizontalTimeline, { pointEvent, rangeEvent, spacers, top } from "./HorizontalTimeline";
 
 export default function AustrianSuccession() {
   return (

@@ -1,4 +1,3 @@
-import React from "react";
 import HorizontalTimeline, { pointEvent, rangeEvent, spacer, top } from "./HorizontalTimeline";
 
 export default function WW2() {
