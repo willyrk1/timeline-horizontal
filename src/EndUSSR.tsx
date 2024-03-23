@@ -105,14 +105,14 @@ export default function EndUSSR() {
           with full honors after his political rehabilitation. The funeral organized by
           opponents of the communist government is attended by over 200,000 people.
         `),
+        pointEvent("Polish parliamentary election", [1989, 6, 18], `
+          Solidarity wins almost every freely contested election in the first Polish
+          election since non-communist approved parties were legalized.
+        `),
         rangeEvent("Hungarian Round Table Talks", [1989, 6, 13], [1989, 9, 18], `
           Hungarian leaders engage in talks modeled on the Polish Round Table Talks
           as calls for reform increase. The various parties resolve to have free
           elections and various constitutional reforms.
-        `),
-        pointEvent("Polish parliamentary election", [1989, 6, 18], `
-          Solidarity wins almost every freely contested election in the first Polish
-          election since non-communist approved parties were legalized.
         `),
         pointEvent("Pan-European Picnic", [1989, 8, 19], `
           As a peace demonstration, and to test Soviet response, a gate is opened in the
@@ -210,6 +210,10 @@ export default function EndUSSR() {
           the country (similar to recent talks in Poland). Initial results are the end
           of the secret police and a call for the first and only East German free elections.
         `),
+        pointEvent("Mongolia pro-democracy demonstration", [1989, 12, 10], `
+          The first pro-democracy demonstration breaks out in Mongolia. Protesters demand free elections, universal
+          suffrage, religious freedom, private property, etc.
+        `),
         pointEvent("End of one-party rule in Bulgaria", [1989, 12, 11], `
           In Bulgaria, a month after hardline communist Todor Zhivkov was ousted, with demonstrations
           sweeping across the country, the new more
@@ -263,6 +267,10 @@ export default function EndUSSR() {
           Lithuania becomes the first of the 15 Soviet republics to declare itself
           independent from the Soviet Union.
         `),
+        pointEvent("Mongolian government dissolves", [1990, 3, 12], `
+          After months of protests and a hunger strike, Mongolia's leader announces his resignation and the Politburo
+          resigns.
+        `),
         pointEvent("East German free election", [1990, 3, 18], `
           East Germany has its first and only free elections. 
         `),
@@ -285,9 +293,14 @@ export default function EndUSSR() {
           houses.
         `),
         pointEvent("Bulgarian free election", [1990, 6, 10], `
-          Bulgaria holds it's first free multi-party national election in nearly 60 years, six months
+          Bulgaria holds its first free multi-party national election in nearly 60 years, six months
           after the Communist Party relinquished a monopoly on power. The rebranded Bulgarian Socialist
           Party wins a majority of the Constitutional Assembly seats.
+        `),
+        pointEvent("Mongolian free election", [1990, 6, 22], `
+          Mongolia has its first free and multi-party elections since the government collapse several months prior.
+          The incumbent Mongolian People's Party wins but ceased to be a communist party since the beginning of anti-
+          communist protests.
         `),
         pointEvent("Declaration of State Sovereignty of Armenia", [1990, 8, 23], `
           Armenia declares itself independent from the Soviet Union. Actual
