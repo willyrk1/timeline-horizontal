@@ -31,7 +31,9 @@ export default function AustrianToNow() {
         rangeEvent('Russo-Japanese War', [1904, 2, 8], [1905, 9, 5]),
         rangeEvent('Russian Revolution of 1905', [1905, 1, 22], [1907, 6, 16]),
         spacer(),
-        rangeEvent('WORLD WAR I', [1914, 7, 28], [1918, 11, 11]),
+        rangeEvent('WORLD WAR I', [1914, 7, 28], [1918, 11, 11], `
+          TBD
+        `, "WW1"),
         spacer(),
         rangeEvent('Russian Revolution', [1917, 3, 8], [1923, 6, 16]),
         pointEvent('October Bolshevik Revolution', [1917, 11, 7]),

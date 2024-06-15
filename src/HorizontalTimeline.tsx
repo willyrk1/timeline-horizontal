@@ -144,10 +144,10 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
               return (
                 <g {...detailProps(event)} key={title}>
                   <polygon
-                    points={`${x - 5},${y} ${x},${y + 5} ${x + 5},${y} ${x},${y - 5}`}
+                    points={`${x},${y} ${x + 5},${y + 5} ${x + 10},${y} ${x + 5},${y - 5}`}
                   />
                   <text
-                    x={x - 10}
+                    x={x - 5}
                     y={y + 5}
                     textAnchor='end'
                     fontFamily='serif'

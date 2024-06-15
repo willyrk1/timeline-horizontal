@@ -8,11 +8,16 @@ import App2 from './App2.js'
 import AustrianSuccession from './AustrianSuccession.js'
 import FirstSilesian from './FirstSilesian.js'
 import EndUSSR from './EndUSSR.js'
+import WW1 from './WW1.js'
 
 const router = createBrowserRouter([
   {
     path: "/timeline-horizontal",
     element: <AustrianToNow />,
+  },
+  {
+    path: "/timeline-horizontal/WW1",
+    element: <WW1 />,
   },
   {
     path: "/timeline-horizontal/WW2",
