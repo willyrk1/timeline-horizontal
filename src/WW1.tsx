@@ -8,8 +8,16 @@ export default function WW1() {
       centerYear={1915}
       pixelsPerYear={400}
       events={[
-        pointEvent("Assassination of Archduke Franz Ferdinand", [1914, 6, 28]),
-        pointEvent("Austria-Hungary declares war on Serbia", [1914, 7, 28]),
+        pointEvent("Assassination of Archduke Franz Ferdinand", [1914, 6, 28], `
+          Heir to the Austro-Hungarian empire, Archduke Franz Ferdinand, is assassinated in Sarajevo, Bosnia
+          and Herzegovina by a Bosnian group hoping to separate from the empire. For the next month, Austria-Hungary
+          encourages riots in
+          Sarajevo while the major European powers investigate the assassination and negotiate a reaction.
+        `),
+        pointEvent("Austria-Hungary declares war on Serbia", [1914, 7, 28], `
+          A month after their heir-apparent was assassinated in Bosnia, Austria-Hungary declares war on Bosnia's neighbor,
+          Serbia, believing it was instrumental in the assassination.
+        `),
         pointEvent("Germany declares war on Russia", [1914, 8, 1]),
         pointEvent("Germany invades Luxembourg", [1914, 8, 2]),
         pointEvent("German-Ottoman alliance", [1914, 8, 2]),
@@ -152,7 +160,7 @@ export default function WW1() {
         `),
         top(),
         rangeEvent("Battle of Verdun", [1916, 2, 21], [1916, 12, 18]),
-        spacer(),
+        rangeEvent("Battle of the Somme", [1916, 7, 1], [1916, 11, 18]),
         pointEvent("Germany declares war on Portugal", [1916, 3, 9], `
           Portugal, a centuries-long British ally, stays neutral in the war until early 1916 when, per Britain's
           request, it seizes dozens of German and Austro-Hungarian ships in its ports. Finally, Germany declares war on
@@ -181,7 +189,12 @@ export default function WW1() {
           involvement of British Captain T.E. Lawrence is depicted in the famous film "Lawrence of
           Arabia".
         `),
-        rangeEvent("Battle of the Somme", [1916, 7, 1], [1916, 11, 18]),
+        rangeEvent("Central Asian Muslim revolt in Russia", [1916, 7, 3], [1917, 2], `
+          Central Asian Muslims revolt against Russia after Russia conscripts people of the are to fight in Europe. Early
+          gains by rebels were reversed in a few months with the last remnants put down in early 1917. Between battles and
+          Russian retribution, hundreds of thousands of the native population were killed or displaced. The revolt
+          contributed to the fall of the Russian tsar and government in 1917.
+        `),
         pointEvent("Bulgaria invades Macedonia", [1916, 8, 17], `
           The Central Powers, fearing Romania's inclusion with the Allies, have Bulgaria launch the Struma offensive, an
           invasion of Macedonia
@@ -204,6 +217,12 @@ export default function WW1() {
           Two years after an Ottoman/German invasion of the Sinai Peninsula (Egypt), Britain finishes retaking the
           peninsula, winning the Battle of Rafa during the Sinai and Palestine campaign.
         `),
+        pointEvent("German telegram to Mexico", [1917, 1, 17], `
+          Germany sends an encrypted telegram to Mexico trying to pull them into the war, promising them land in the
+          southern United States. British intelligence intercepts and decrypts the telegram, a landmark in military
+          intelligence history. The telegram and Germany's eventual admission to its authenticity enrages Americans and
+          helps draw them into the war several months later.
+        `),
         pointEvent("Britain finally captures Baghdad", [1917, 3, 11], `
           British and Indian forces capture Baghdad in the Mesopotamian Campaign. A year prior, a push towards Baghdad had
           ended in humiliating and costly defeat at Kut but a reorganized, more systematic drive along the Tigris defeats
@@ -223,6 +242,10 @@ export default function WW1() {
         `),
         pointEvent("Greece declares war on the Central Powers", [1917, 6, 30], `
           Reunited under one government after the king's abdication, Greece declares war on the Central Powers.
+        `),
+        pointEvent("China declares war on Germany and Austria-Hungary", [1917, 8, 14], `
+          China finally enters the war on the Allied side after Germany sinks ships killing Chinese workers, and hoping
+          to gain ground on Japanese influence in the region.
         `),
         top(),
         ...spacers(15),
