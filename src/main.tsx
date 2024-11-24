@@ -9,6 +9,7 @@ import AustrianSuccession from './AustrianSuccession.js'
 import FirstSilesian from './FirstSilesian.js'
 import EndUSSR from './EndUSSR.js'
 import WW1 from './WW1.js'
+import War1812 from './War1812.js'
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
   {
     path: "/timeline-horizontal/EndUSSR",
     element: <EndUSSR />,
+  },
+  {
+    path: "/timeline-horizontal/1812",
+    element: <War1812 />,
   },
 ])
 
