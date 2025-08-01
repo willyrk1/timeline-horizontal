@@ -35,9 +35,9 @@ export default function AustrianToNow() {
           TBD
         `, "WW1"),
         spacer(),
-        rangeEvent('Russian Revolution', [1917, 3, 8], [1923, 6, 16]),
-        pointEvent('October Bolshevik Revolution', [1917, 11, 7]),
-        rangeEvent('Russian Civil War', [1917, 11, 7], [1923, 6, 16]),
+        rangeEvent('Russian Revolution', [1917, 3, 8], [1923, 6, 16], " ", "PostWW1East"),
+        pointEvent('October Bolshevik Revolution', [1917, 11, 7], " ", "PostWW1East"),
+        rangeEvent('Russian Civil War', [1917, 11, 7], [1923, 6, 16], " ", "PostWW1East"),
         spacer(),
         rangeEvent('Spanish Civil War', [1936, 7, 17], [1939, 4, 1]),
         spacer(),

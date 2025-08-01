@@ -11,6 +11,8 @@ import EndUSSR from './EndUSSR.js'
 import WW1 from './WW1.js'
 import War1812 from './War1812.js'
 import HundredYears from './HundredYears.js'
+import WW2Africa from './WW2Africa.js'
+import PostWW1East from './PostWW1East.js'
 
 const router = createBrowserRouter([
   {
@@ -22,8 +24,16 @@ const router = createBrowserRouter([
     element: <WW1 />,
   },
   {
+    path: "/timeline-horizontal/PostWW1East",
+    element: <PostWW1East />,
+  },
+  {
     path: "/timeline-horizontal/WW2",
     element: <WW2 />,
+  },
+  {
+    path: "/timeline-horizontal/WW2/Africa",
+    element: <WW2Africa />,
   },
   {
     path: "/timeline-horizontal/App2",

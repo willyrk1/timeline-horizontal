@@ -110,24 +110,24 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
           }
           switch (event.eventType) {
             case 'range': {
-              const { title, startDate, endDate } = event;
+              const { title, startDate, endDate, labelRight } = event;
               const boxLeft = totalWidth * (getDateNumber(startDate) - startYear) / (endYear - startYear);
-              const right = totalWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
+              const boxRight = totalWidth * (getDateNumber(endDate) - startYear) / (endYear - startYear);
               const y = topMargin + yIndex * boxHeight + 10;
               return (
                 <g {...detailProps(event)} key={title}>
                   <line
                     x1={boxLeft}
-                    x2={right}
+                    x2={boxRight}
                     y1={y}
                     y2={y}
                     stroke='black'
                     strokeWidth='20'
                   />
                   <text
-                    x={boxLeft - 5}
+                    x={labelRight ? boxRight + 5 : boxLeft - 5}
                     y={y + 5}
-                    textAnchor='end'
+                    textAnchor={labelRight ? 'start' : 'end'}
                     fontFamily='serif'
                     fontSize='14'
                   >
@@ -160,6 +160,9 @@ export default function HorizontalTimeline(props: HorizontalTimelineProps) {
             }
             case 'top':
               yIndex = 0;
+              break;
+            case 'back':
+              yIndex -= 2;
               break;
           }
         })}

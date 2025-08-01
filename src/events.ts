@@ -8,12 +8,13 @@ interface RangeEvent extends EventBase {
   eventType: 'range'
   startDate: number[]
   endDate: number[]
+  labelRight: boolean
 }
 
 export function rangeEvent(
-  title: string, startDate: number[], endDate: number[], detail?: string, link?: string
+  title: string, startDate: number[], endDate: number[], detail?: string, link?: string, labelRight = false
 ) : RangeEvent {
-  return { eventType: 'range', title, startDate, endDate, detail, link }
+  return { eventType: 'range', title, startDate, endDate, detail, link, labelRight }
 }
 
 interface PointEvent extends EventBase {
@@ -46,4 +47,12 @@ export function top() : Top {
   return { eventType: 'top' }
 }
 
-export type Event = RangeEvent | PointEvent | Spacer | Top
+interface Back {
+  eventType: 'back'
+}
+
+export function back() : Back {
+  return { eventType: 'back' }
+}
+
+export type Event = RangeEvent | PointEvent | Spacer | Top | Back
